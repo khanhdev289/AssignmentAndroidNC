@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/orage_tone"
+        android:background="@drawable/custome_boder"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_marginLeft="20dp"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            android:src="@drawable/logo_noway_new"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:gravity="left"
+            android:text="Thêm Nhạc"
+
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:text="Tên Nhạc"
+            />
+        <EditText
+            android:id="@+id/ed_dialog_music_tennhac"
+            android:layout_width="350dp"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_height="40dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:text="Đường Dẫn"
+            />
+        <EditText
+            android:id="@+id/ed_dialog_music_link"
+            android:layout_width="350dp"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_height="40dp"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/dialog_btnthemnhac"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/orage_tone"
+            android:text="Thêm" />
+
+        <Button
+            android:layout_marginLeft="40dp"
+            android:id="@+id/dialog_btnthoatnhac"
+            android:backgroundTint="@color/orage_tone"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="THoát" />
+    </LinearLayout>
+</LinearLayout>
