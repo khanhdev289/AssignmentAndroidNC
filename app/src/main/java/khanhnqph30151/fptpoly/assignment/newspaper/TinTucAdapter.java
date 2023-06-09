@@ -7,11 +7,17 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
+
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import khanhnqph30151.fptpoly.assignment.R;
 import khanhnqph30151.fptpoly.assignment.fragment.NewsFragment;
@@ -38,7 +44,18 @@ public class TinTucAdapter extends RecyclerView.Adapter<TinTucAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.tv1.setText(list.get(position).getTitle());
-        holder.tv2.setText(list.get(position).getDescription());
+//        holder.tv2.setText(list.get(position).getDescription());
+        String description = list.get(position).getDescription();
+
+
+        Pattern pattern = Pattern.compile("src=\\\"(.*?)\\\"");
+        Matcher matcher = pattern.matcher(description);
+        String url_image = "";
+        if (matcher.find()) {
+            url_image = matcher.group(1);
+
+        }
+        Picasso.get().load(url_image).into(holder.tv2);
 //        holder.tv3.setText(list.get(position).getPubDate());
 //        holder.tv4.setText(list.get(position).getLink());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -57,15 +74,16 @@ public class TinTucAdapter extends RecyclerView.Adapter<TinTucAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tv1, tv2, tv3, tv4;
+        TextView tv1, tv3, tv4;
+        ImageView tv2;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             tv1 = itemView.findViewById(R.id.item_title);
             tv2 = itemView.findViewById(R.id.item_des);
-            tv3 = itemView.findViewById(R.id.item_pubData);
-            tv4 = itemView.findViewById(R.id.item_link);
+//            tv3 = itemView.findViewById(R.id.item_pubData);
+//            tv4 = itemView.findViewById(R.id.item_link);
         }
     }
 }

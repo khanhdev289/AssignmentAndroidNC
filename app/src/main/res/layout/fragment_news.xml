@@ -42,7 +42,7 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/news_tablayout"
             android:layout_width="match_parent"
-            android:background="@android:color/holo_red_light"
+            android:background="@color/white"
             android:layout_height="wrap_content"
             />
         <androidx.viewpager2.widget.ViewPager2

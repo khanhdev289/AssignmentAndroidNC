@@ -60,17 +60,14 @@ public class TheGioiFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         String urlRss = "https://vnexpress.net/rss/the-gioi.rss";
-        TheGioiFragment.DownloadTinTuc dowload = new DownloadTinTuc(this);
+        TheGioiFragment.DownloadTinTuc dowload = new DownloadTinTuc();
         dowload.execute(urlRss);
 
         recyTheGioi = view.findViewById(R.id.recy_thegioi);
     }
     public class DownloadTinTuc extends AsyncTask<String, Void, List<TinTuc>> {
-        TheGioiFragment activity = null;
 
-
-        public DownloadTinTuc(TheGioiFragment activity) {
-            this.activity = activity;
+        public DownloadTinTuc() {
 
         }
 

@@ -2,6 +2,8 @@ package khanhnqph30151.fptpoly.assignment.newspaper;
 
 import android.util.Log;
 
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -9,6 +11,8 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TinTucLoader {
     ArrayList<TinTuc> tinTucList = new ArrayList<TinTuc>();
@@ -57,6 +61,15 @@ public class TinTucLoader {
                             {
                                 Log.d("aaaaaa", "getTinTucList: them des");
                                 tinTuc.setDescription(textContent);
+//                                org.jsoup.nodes.Document doc = Jsoup.parse(temp);
+//                                Elements ImgTag = doc.select("img");
+//                                for (Element img : ImgTag) {
+//                                    String src = img.attr("src");
+//                                    item.setImgAvatar(src);
+//                                }
+//                                String text = temp.replaceAll("<[^>]*>", "");
+//
+//                                item.setDescription(text);
                             }
                             if (tagName.equalsIgnoreCase("pubDate"))
                             {
