@@ -34,16 +34,16 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         >
+
         <EditText
             android:id="@+id/ed_Login_ten"
-            android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:paddingLeft="20dp"
             android:layout_height="40dp"
-            android:hint="Tên đăng nhập"
-            android:textAlignment="textStart"
+            android:layout_margin="10dp"
             android:background="@drawable/custome_boder"
-            />
+            android:hint="Tên đăng nhập"
+            android:paddingLeft="20dp"
+            android:textAlignment="textStart" />
     </LinearLayout>
     <LinearLayout
 

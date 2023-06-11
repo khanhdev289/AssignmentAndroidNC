@@ -1,4 +1,4 @@
-package khanhnqph30151.fptpoly.assignment.newspaper;
+package khanhnqph30151.fptpoly.assignment.model;
 
 public class TinTuc {
     String title;

@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,13 +20,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import khanhnqph30151.fptpoly.assignment.R;
-import khanhnqph30151.fptpoly.assignment.fragment.NewsFragment;
-import khanhnqph30151.fptpoly.assignment.newspaper.TinTuc;
-import khanhnqph30151.fptpoly.assignment.newspaper.TinTucAdapter;
+import khanhnqph30151.fptpoly.assignment.model.TinTuc;
+import khanhnqph30151.fptpoly.assignment.adapter.TinTucAdapter;
 import khanhnqph30151.fptpoly.assignment.newspaper.TinTucLoader;
 
 /**

@@ -5,6 +5,8 @@ public class Music {
     private String tenMusic;
     private String link;
 
+    private int key;
+
     public Music() {
     }
 
@@ -12,6 +14,13 @@ public class Music {
         this.idMusic = idMusic;
         this.tenMusic = tenMusic;
         this.link = link;
+    }
+
+    public Music(int idMusic, String tenMusic, String link, int key) {
+        this.idMusic = idMusic;
+        this.tenMusic = tenMusic;
+        this.link = link;
+        this.key = key;
     }
 
     public int getIdMusic() {
@@ -36,5 +45,13 @@ public class Music {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public void setKey(int key) {
+        this.key = key;
     }
 }

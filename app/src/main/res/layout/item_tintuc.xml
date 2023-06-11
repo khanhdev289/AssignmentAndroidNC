@@ -21,39 +21,31 @@
                 android:textStyle="italic"
                 android:id="@+id/item_des"
                 />
-            <TextView
-                android:layout_weight="2"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="2"
                 android:layout_marginLeft="10dp"
-                android:textSize="30dp"
-                android:text="Title"
-                android:textStyle="bold"
-                android:id="@+id/item_title"
-                />
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:text="Title"
+                    android:textStyle="bold"
+                    android:id="@+id/item_title"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:text=""
+                    android:textStyle="italic"
+                    android:id="@+id/item_pubData1"
+                    />
+            </LinearLayout>
 
         </LinearLayout>
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical">-->
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textSize="20dp"-->
-<!--                android:text=""-->
-<!--                android:textStyle="italic"-->
-<!--                android:id="@+id/item_pubData"-->
-<!--                />-->
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textSize="20dp"-->
-<!--                android:text=""-->
-<!--                android:textStyle="italic"-->
-<!--                android:id="@+id/item_link"-->
-<!--                />-->
-<!--        </LinearLayout>-->
 
     </LinearLayout>
 

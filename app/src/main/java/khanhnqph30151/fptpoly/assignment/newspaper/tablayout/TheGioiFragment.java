@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import khanhnqph30151.fptpoly.assignment.R;
-import khanhnqph30151.fptpoly.assignment.newspaper.TinTuc;
-import khanhnqph30151.fptpoly.assignment.newspaper.TinTucAdapter;
+import khanhnqph30151.fptpoly.assignment.model.TinTuc;
+import khanhnqph30151.fptpoly.assignment.adapter.TinTucAdapter;
 import khanhnqph30151.fptpoly.assignment.newspaper.TinTucLoader;
 
 /**

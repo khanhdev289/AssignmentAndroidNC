@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import khanhnqph30151.fptpoly.assignment.R;
+import khanhnqph30151.fptpoly.assignment.data.FavoriteDAO;
 import khanhnqph30151.fptpoly.assignment.data.MusicDAO;
+import khanhnqph30151.fptpoly.assignment.model.Favorite;
 import khanhnqph30151.fptpoly.assignment.model.Music;
 import khanhnqph30151.fptpoly.assignment.service.Service;
 
@@ -28,6 +31,9 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
     Context context;
     MusicDAO DAO;
     TextView title;
+    Favorite favoriteMusic;
+    FavoriteDAO favDAO;
+    boolean check = false;
 
     public MusicAdapter(ArrayList<Music> listsong, Context context, MusicDAO DAO, TextView title) {
         this.list = listsong;
@@ -39,11 +45,13 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView item_tennhac;
         CardView itemnhac;
+        ImageView heart;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             item_tennhac = itemView.findViewById(R.id.item_tennhac);
             itemnhac = itemView.findViewById(R.id.itemnhac);
+            heart = itemView.findViewById(R.id.iv_item_heart);
 
         }
     }
@@ -66,6 +74,42 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
 //                return false;
 //            }
 //        });
+        holder.heart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                favoriteMusic = new Favorite();
+                String tenfav = list.get(position).getTenMusic();
+                favDAO = new FavoriteDAO(context);
+                Favorite themfav = new Favorite(tenfav);
+                if (check == false) {
+                    if (favDAO.ThemFav(themfav) > 0) {
+                        try {
+                            favoriteMusic.setTenMusic(list.get(position).getTenMusic());
+                            holder.heart.setImageResource(R.drawable.icon_heart2);
+                            notifyDataSetChanged();
+                            Toast.makeText(context, "Đã Thêm Vào Danh Sách Yêu Thích", Toast.LENGTH_SHORT).show();
+                            check = true;
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Toast.makeText(context, "Đã Tồn Tại Bài Hát Trong Danh Sách Yêu Thích", Toast.LENGTH_SHORT).show();
+                    }
+
+                } else if (check == true) {
+                    holder.heart.setImageResource(R.drawable.icon_heart);
+                    Toast.makeText(context, "Đã Xóa Khỏi Danh Sách Yêu Thích", Toast.LENGTH_SHORT).show();
+                    check = false;
+                }
+            }
+        });
+//        boolean isFavorite = mFavoriteDao.isFavorite(model.id);
+//        if (isFavorite) {
+//            holder.iv_favorite.setImageResource(R.drawable.ic_favorite);
+//        } else {
+//            holder.iv_favorite.setImageResource(R.drawable.ic_favorite_border);
+//        }
         holder.itemnhac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

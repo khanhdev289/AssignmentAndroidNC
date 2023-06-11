@@ -14,14 +14,28 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String bangdsnhac = "CREATE TABLE nhac(id integer primary key autoincrement,tennhac text ," +
-                "linknhac text UNIQUE)";
+                "linknhac text UNIQUE, traitim text)";
         db.execSQL(bangdsnhac);
+        String user = "CREATE TABLE tbl_user(id_user text primary key, pass_user text not null)";
+        db.execSQL(user);
+        String favorite =  "CREATE TABLE tbl_fav(id integer primary key autoincrement, tennhac text UNIQUE REFERENCES nhac(tennhac))";
+        db.execSQL(favorite);
+
+        db.execSQL("INSERT INTO tbl_user VALUES('admin','123')");
+
+
+
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         String deletebangdsnhac = "DROP TABLE IF EXISTS nhac";
         db.execSQL(deletebangdsnhac);
+        String deletebangdsthanhvien = "DROP TABLE IF EXISTS tbl_user";
+        db.execSQL(deletebangdsthanhvien);
+        String deletebangfav = "DROP TABLE IF EXISTS tbl_fav";
+        db.execSQL(deletebangfav);
         onCreate(db);
     }
 }

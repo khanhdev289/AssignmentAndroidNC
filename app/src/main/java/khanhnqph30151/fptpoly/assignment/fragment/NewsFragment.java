@@ -1,13 +1,10 @@
 package khanhnqph30151.fptpoly.assignment.fragment;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
@@ -17,18 +14,7 @@ import android.view.ViewGroup;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
 import khanhnqph30151.fptpoly.assignment.R;
-import khanhnqph30151.fptpoly.assignment.newspaper.TinTuc;
-import khanhnqph30151.fptpoly.assignment.newspaper.TinTucAdapter;
-import khanhnqph30151.fptpoly.assignment.newspaper.TinTucLoader;
 import khanhnqph30151.fptpoly.assignment.newspaper.tablayout.NewsViewPager2Adapter;
 
 public class NewsFragment extends Fragment {
