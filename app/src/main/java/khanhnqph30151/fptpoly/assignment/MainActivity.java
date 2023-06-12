@@ -24,6 +24,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         NavigationBarView view = findViewById(R.id.bottom_navi);
+        Bundle check = getIntent().getExtras();
+        boolean checkdn = check.getBoolean("khach");
+        if(checkdn == true){
+            view.getMenu().clear();
+            view.inflateMenu(R.menu.menu_khach);
+        }
+        else if(checkdn == false) {
+            view.getMenu().clear();
+            view.inflateMenu(R.menu.menu_bottom_navi);
+        }
         view.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

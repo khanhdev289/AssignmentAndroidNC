@@ -20,13 +20,15 @@
 
                 android:orientation="horizontal">
                 <ImageView
+                    android:layout_weight="2"
                     android:layout_marginLeft="20dp"
-                    android:layout_width="80dp"
+                    android:layout_width="0dp"
                     android:layout_height="50dp"
                     android:src="@drawable/logo_noway_android"
                     />
                 <TextView
-                    android:layout_width="200dp"
+                    android:layout_weight="4"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Nghe nhạc"
                     android:textSize="20dp"
@@ -34,10 +36,11 @@
                     />
 
                 <Button
+                    android:layout_weight="1"
                     android:id="@+id/btn_music_add"
                     android:background="@drawable/baseline_add_24"
                     android:gravity="center"
-                    android:layout_width="50dp"
+                    android:layout_width="0dp"
                     android:layout_height="50dp"/>
             </LinearLayout>
         </LinearLayout>

@@ -44,4 +44,5 @@ public class MusicDAO {
     public static int delete(int id){
         return sqliteDa.delete("nhac", "id = ?", new String[]{String.valueOf(id)});
     }
+
 }

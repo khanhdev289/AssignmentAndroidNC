@@ -29,16 +29,14 @@ public class Service extends android.app.Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        String musicUri = intent.getStringExtra("link");
+        String musicUri = intent.getStringExtra("linkmusic");
         if (musicUri != null) {
             playMusic(musicUri);
             Toast.makeText(this, "Bắt Đầu Phát Nhạc", Toast.LENGTH_SHORT).show();
-        }
-        else if(mediaPlayer.isPlaying()){
+        }else if(mediaPlayer.isPlaying()){
             mediaPlayer.pause();
             Toast.makeText(this, "Dừng Nhạc", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             mediaPlayer.start();
             Toast.makeText(this, "Tiếp Tục Nhạc", Toast.LENGTH_SHORT).show();
         }

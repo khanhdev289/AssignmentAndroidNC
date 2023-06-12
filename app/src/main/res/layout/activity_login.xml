@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_margin="40dp"
     tools:context=".LoginActivity">
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:src="@drawable/logo_noway_android"
         />
 
@@ -28,7 +28,7 @@
         android:text="Hãy đăng nhặp và tìm kiếm loại sách mà bạn mong muốn"
         android:gravity="center"
         />
-    <LinearLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,15 +38,13 @@
         <EditText
             android:id="@+id/ed_Login_ten"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@drawable/custome_boder"
             android:hint="Tên đăng nhập"
             android:paddingLeft="20dp"
             android:textAlignment="textStart" />
-    </LinearLayout>
-    <LinearLayout
-
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -55,13 +53,12 @@
             android:id="@+id/ed_Login_matkhau"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:hint="Mật Khẩu"
             android:paddingLeft="20dp"
-            android:background="@drawable/custome_boder"
             />
-    </LinearLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_marginTop="15dp"
@@ -74,26 +71,40 @@
         />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quên mật khẩu ?"
+                android:textStyle="bold"
+                android:textColor="@color/orage_tone"
+                />
+            <TextView
+                android:id="@+id/tv_Login_dangky"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đăng ký"
+                android:textStyle="bold"
+                android:textColor="@color/orage_tone"
+                />
+        </LinearLayout>
         <TextView
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Quên mật khẩu ?"
-            android:textStyle="bold"
-            android:textColor="@color/orage_tone"
-            />
-        <TextView
-            android:id="@+id/tv_Login_dangky"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Đăng ký"
-            android:textStyle="bold"
-            android:textColor="@color/orage_tone"
+            android:text="Đăng nhập với tư cách khách"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:id="@+id/tv_login_khach"
             />
     </LinearLayout>
 

@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText edUser, edPass;
     UserDAO thanhVienDAO;
+    TextView tkKhach;
     AppCompatButton btnDangNhap;
     SharedPreferences sharedPreferences;
 
@@ -58,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
 
         btnDangNhap = findViewById(R.id.btn_Login_DangNhap);
         TextView tvDangKy = findViewById(R.id.tv_Login_dangky);
+        tkKhach = findViewById(R.id.tv_login_khach);
 
         edUser = findViewById(R.id.ed_Login_ten);
         edPass = findViewById(R.id.ed_Login_matkhau);
@@ -99,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (service_loginRegister.DangNhap(thanhVienDAO,tendn,mk) == true) {
                         Toast.makeText(LoginActivity.this, "Đăng Nhập Thành Công", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.putExtra("khach",false);
                         startActivity(intent);
                         finish();
                     } else {
@@ -106,6 +109,14 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                 }
+            }
+        });
+        tkKhach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                i.putExtra("khach",true);
+                startActivity(i);
             }
         });
     }

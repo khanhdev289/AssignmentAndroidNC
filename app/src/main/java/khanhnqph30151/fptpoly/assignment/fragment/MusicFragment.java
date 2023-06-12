@@ -37,7 +37,7 @@ public class MusicFragment extends Fragment {
     RecyclerView recyclerView;
     Button btn_them;
     TextView tenbaihat;
-    Button start, pause, stop, add;
+    Button start, pause, stop;
     boolean check = true;
 
     public MusicFragment() {
@@ -122,6 +122,7 @@ public class MusicFragment extends Fragment {
         EditText themtenmusic = view.findViewById(R.id.ed_dialog_music_tennhac);
         EditText themlinknhac = view.findViewById(R.id.ed_dialog_music_link);
         Button themnhac = view.findViewById(R.id.dialog_btnthemnhac);
+        Button thoatnhac = view.findViewById(R.id.dialog_btnthoatnhac);
         builder.setView(view);
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
@@ -135,6 +136,7 @@ public class MusicFragment extends Fragment {
                     Toast.makeText(getContext(), "Khong duoc de trong", Toast.LENGTH_SHORT).show();
                 } else {
                     themmusic.setTenMusic(themten);
+                    themmusic.setLink(themlink);
                     if (musicDAO.Themsong(themmusic) > 0) {
                         realoaddata();
                         Toast.makeText(getContext(), "Thêm Thành Công", Toast.LENGTH_SHORT).show();
@@ -145,5 +147,12 @@ public class MusicFragment extends Fragment {
                 }
             }
         });
+        thoatnhac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
     }
+
 }

@@ -67,6 +67,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Music music = list.get(position);
         holder.item_tennhac.setText(list.get(position).getTenMusic());
+        checkAndUpdateFavoriteStatus(holder,music);
 //        holder.itemnhac.setOnLongClickListener(new View.OnLongClickListener() {
 //            @Override
 //            public boolean onLongClick(View v) {
@@ -89,7 +90,6 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
                             notifyDataSetChanged();
                             Toast.makeText(context, "Đã Thêm Vào Danh Sách Yêu Thích", Toast.LENGTH_SHORT).show();
                             check = true;
-
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -117,7 +117,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
                 title.setText(ten);
 
                 Intent i = new Intent(context, Service.class);
-                i.putExtra("link",list.get(position).getLink());
+                i.putExtra("linkmusic",list.get(position).getLink());
                 context.startService(i);
             }
         });
@@ -179,6 +179,15 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
             }
         });
         dialogDL.show();
+    }
+    private void checkAndUpdateFavoriteStatus(ViewHolder holder, Music music) {
+        FavoriteDAO favoriteDAO = new FavoriteDAO(context);
+        boolean isFavorite = favoriteDAO.isFavorite(music.getTenMusic());
+        if (isFavorite) {
+            holder.heart.setImageResource(R.drawable.icon_heart2);
+        } else {
+            holder.heart.setImageResource(R.drawable.icon_heart);
+        }
     }
 
 

@@ -48,6 +48,14 @@ public class FavoriteDAO {
 
         return sqLiteDatabase.delete("tbl_fav", "id = ?", new String[]{String.valueOf(id)});
     }
-
+    public boolean isFavorite(String tennhac) {
+        SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
+        String query = "SELECT * FROM tbl_fav WHERE tennhac = ?";
+        String[] selectionArgs = { String.valueOf(tennhac) };
+        Cursor cursor = sqLiteDatabase.rawQuery(query, selectionArgs);
+        boolean isFavorite = cursor.getCount() > 0;
+        cursor.close();
+        return isFavorite;
+    }
 }
 
