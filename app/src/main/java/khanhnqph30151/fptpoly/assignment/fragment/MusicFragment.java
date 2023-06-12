@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.app.IntentService;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,12 +35,13 @@ import khanhnqph30151.fptpoly.assignment.service.Service;
 public class MusicFragment extends Fragment {
 
     MusicDAO musicDAO;
+    private int currentIndex = 0;
     MusicAdapter adapterMusic;
     ArrayList<Music> listmusic;
     RecyclerView recyclerView;
     Button btn_them;
     TextView tenbaihat;
-    Button start, pause, stop;
+    ImageButton play, pause, stop, back, next;
     boolean check = true;
 
     public MusicFragment() {
@@ -63,12 +67,15 @@ public class MusicFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         recyclerView = view.findViewById(R.id.recyMusic);
         tenbaihat = view.findViewById(R.id.ed_tenbaihat);
         btn_them = view.findViewById(R.id.btn_music_add);
-        start = view.findViewById(R.id.btn_start);
         pause = view.findViewById(R.id.btn_pause);
         stop = view.findViewById(R.id.btn_stop);
+        next = view.findViewById(R.id.btn_next);
+        back = view.findViewById(R.id.btn_back);
+
 
         realoaddata();
         btn_them.setOnClickListener(new View.OnClickListener() {
@@ -79,22 +86,28 @@ public class MusicFragment extends Fragment {
             }
         });
         Intent intentsong = new Intent(getActivity(), Service.class);
-        start.setOnClickListener(new View.OnClickListener() {
+//        start.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(check == false){
+//                    getActivity().startService(intentsong);
+//                    check = true;
+//                }
+//
+//
+//            }
+//        });
+        pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(check == false){
                     getActivity().startService(intentsong);
+                    pause.setImageResource(R.drawable.pause);
                     check = true;
-                }
-
-            }
-        });
-        pause.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(check == true) {
+                }else if(check == true) {
                     getActivity().startService(intentsong);
                     check = false;
+                    pause.setImageResource(R.drawable.play);
                 }
             }
         });
@@ -105,13 +118,44 @@ public class MusicFragment extends Fragment {
                 check = true;
             }
         });
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentIndex++;
+                if (currentIndex>=listmusic.size()){
+                    currentIndex = 0;
+                }
+                Music music = listmusic.get(currentIndex);
+                tenbaihat.setText(music.getTenMusic());
+                Intent intent = new Intent(getContext(), Service.class);
+                intent.putExtra("linkmusic", music.getLink());
+                check = true;
+                getContext().startService(intent);
+            }
 
-        super.onViewCreated(view, savedInstanceState);
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentIndex--;
+                if (currentIndex< 0){
+                    currentIndex = listmusic.size()-1;
+                }
+                Music music = listmusic.get(currentIndex);
+                tenbaihat.setText(music.getTenMusic());
+                Intent intent = new Intent(getContext(), Service.class);
+                intent.putExtra("linkmusic", music.getLink());
+                check = true;
+                getContext().startService(intent);
+            }
+        });
+
+
     }
     public void realoaddata() {
         musicDAO = new MusicDAO(getContext());
         listmusic = musicDAO.GetDSS();
-        adapterMusic = new MusicAdapter(listmusic, getContext(), musicDAO,tenbaihat);
+        adapterMusic = new MusicAdapter(listmusic, getContext(), musicDAO,tenbaihat, pause);
         recyclerView.setAdapter(adapterMusic);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
@@ -153,6 +197,16 @@ public class MusicFragment extends Fragment {
                 alertDialog.dismiss();
             }
         });
+    }
+    private void moveToNextItem() {
+        int nextPosition = currentIndex + 1;
+        if (nextPosition < adapterMusic.getItemCount()) {
+            recyclerView.scrollToPosition(nextPosition);
+            currentIndex = nextPosition;
+        } else {
+            recyclerView.scrollToPosition(0);
+            currentIndex = 0;
+        }
     }
 
 }

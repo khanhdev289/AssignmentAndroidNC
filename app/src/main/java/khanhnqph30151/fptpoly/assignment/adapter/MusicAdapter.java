@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,18 +35,21 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
     Favorite favoriteMusic;
     FavoriteDAO favDAO;
     boolean check = false;
+    ImageView pause;
 
-    public MusicAdapter(ArrayList<Music> listsong, Context context, MusicDAO DAO, TextView title) {
+    public MusicAdapter(ArrayList<Music> listsong, Context context, MusicDAO DAO, TextView title, ImageView pause) {
         this.list = listsong;
         this.context = context;
         this.DAO = DAO;
         this.title = title;
+        this.pause = pause;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView item_tennhac;
         CardView itemnhac;
         ImageView heart;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -115,6 +119,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
             public void onClick(View v) {
                 String ten = list.get(position).getTenMusic();
                 title.setText(ten);
+                pause.setImageResource(R.drawable.pause);
 
                 Intent i = new Intent(context, Service.class);
                 i.putExtra("linkmusic",list.get(position).getLink());
