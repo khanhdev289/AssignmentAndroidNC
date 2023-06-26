@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import khanhnqph30151.fptpoly.assignment.MainActivity;
 import khanhnqph30151.fptpoly.assignment.R;
 import khanhnqph30151.fptpoly.assignment.adapter.MusicAdapter;
 import khanhnqph30151.fptpoly.assignment.data.MusicDAO;
@@ -36,6 +37,7 @@ public class MusicFragment extends Fragment {
 
     MusicDAO musicDAO;
     private int currentIndex = 0;
+    private int backPressedCount = 0;
     MusicAdapter adapterMusic;
     ArrayList<Music> listmusic;
     RecyclerView recyclerView;
@@ -43,6 +45,7 @@ public class MusicFragment extends Fragment {
     TextView tenbaihat;
     ImageButton play, pause, stop, back, next;
     boolean check = true;
+    boolean isFirstItem = false;
 
     public MusicFragment() {
         // Required empty public constructor
@@ -77,7 +80,7 @@ public class MusicFragment extends Fragment {
         back = view.findViewById(R.id.btn_back);
 
 
-        realoaddata();
+
         btn_them.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("MissingInflatedId")
             @Override
@@ -127,28 +130,51 @@ public class MusicFragment extends Fragment {
                 }
                 Music music = listmusic.get(currentIndex);
                 tenbaihat.setText(music.getTenMusic());
+                pause.setImageResource(R.drawable.pause);
                 Intent intent = new Intent(getContext(), Service.class);
                 intent.putExtra("linkmusic", music.getLink());
-                check = true;
                 getContext().startService(intent);
             }
-
         });
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentIndex--;
-                if (currentIndex< 0){
-                    currentIndex = listmusic.size()-1;
+//                currentIndex--;
+//                if (currentIndex< 0){
+//                    currentIndex = listmusic.size()-1;
+//                }
+//                Music music = listmusic.get(currentIndex);
+//                tenbaihat.setText(music.getTenMusic());
+//                Intent intent = new Intent(getContext(), Service.class);
+//                intent.putExtra("linkmusic", music.getLink());
+//                getContext().startService(intent);
+
+                backPressedCount++;
+                if (backPressedCount == 1) {
+                    // Thực hiện hành động khi nhấn 1 lần
+                    Music music = listmusic.get(currentIndex);
+                    tenbaihat.setText(music.getTenMusic());
+                    Intent intent = new Intent(getContext(), Service.class);
+                    intent.putExtra("linkmusic", music.getLink());
+                    getContext().startService(intent);
+                } else if (backPressedCount == 2) {
+                    // Thực hiện hành động khi nhấn 2 lần
+                    backPressedCount = 0; // Reset đếm sau khi thực hiện hành động lần thứ hai
+                    currentIndex--;
+                    if (currentIndex < 0) {
+                        currentIndex = listmusic.size() - 1;
+                    }
+                    Music music = listmusic.get(currentIndex);
+                    tenbaihat.setText(music.getTenMusic());
+                    Intent intent = new Intent(getContext(), Service.class);
+                    intent.putExtra("linkmusic", music.getLink());
+                    getContext().startService(intent);
                 }
-                Music music = listmusic.get(currentIndex);
-                tenbaihat.setText(music.getTenMusic());
-                Intent intent = new Intent(getContext(), Service.class);
-                intent.putExtra("linkmusic", music.getLink());
-                check = true;
-                getContext().startService(intent);
+
             }
         });
+        realoaddata();
 
 
     }

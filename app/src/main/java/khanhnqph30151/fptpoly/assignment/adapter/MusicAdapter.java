@@ -120,7 +120,6 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
                 String ten = list.get(position).getTenMusic();
                 title.setText(ten);
                 pause.setImageResource(R.drawable.pause);
-
                 Intent i = new Intent(context, Service.class);
                 i.putExtra("linkmusic",list.get(position).getLink());
                 context.startService(i);

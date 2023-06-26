@@ -56,7 +56,7 @@ public class ThoiSuFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        String urlRss = "https://vnexpress.net/rss/the-gioi.rss";
+        String urlRss = "https://vnexpress.net/rss/thoi-su.rss";
         ThoiSuFragment.DownloadTinTuc dowload = new DownloadTinTuc(this);
         dowload.execute(urlRss);
 

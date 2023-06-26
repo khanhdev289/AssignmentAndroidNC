@@ -16,12 +16,12 @@ public class DBHelper extends SQLiteOpenHelper {
         String bangdsnhac = "CREATE TABLE nhac(id integer primary key autoincrement,tennhac text ," +
                 "linknhac text UNIQUE, traitim text)";
         db.execSQL(bangdsnhac);
-        String user = "CREATE TABLE tbl_user(id_user text primary key, pass_user text not null)";
+        String user = "CREATE TABLE tbl_user(id_user text primary key, pass_user text not null, avatar text)";
         db.execSQL(user);
         String favorite =  "CREATE TABLE tbl_fav(id integer primary key autoincrement, tennhac text UNIQUE REFERENCES nhac(tennhac))";
         db.execSQL(favorite);
 
-        db.execSQL("INSERT INTO tbl_user VALUES('admin','123')");
+//        db.execSQL("INSERT INTO tbl_user VALUES('admin','123')");
 
 
 
